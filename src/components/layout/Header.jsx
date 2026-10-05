@@ -1,4 +1,5 @@
-import styles from './Header.module.scss';
+import { Link } from "react-router";
+import styles from "./Header.module.scss";
 
 function Header() {
   return (
@@ -6,7 +7,16 @@ function Header() {
       <div className="flex-fill">
         <strong> React-router </strong>
       </div>
-      <ul className={styles.headerList}></ul>
+      <ul className={styles.headerList}>
+        <Link to="/" className="btn btn-primary mr-15">
+          {" "}
+          Homepage{" "}
+        </Link>
+        <Link to="/profile" className="btn btn-primary">
+          {" "}
+          Profile{" "}
+        </Link>
+      </ul>
     </header>
   );
 }
