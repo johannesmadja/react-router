@@ -2,19 +2,22 @@ import { createBrowserRouter } from "react-router";
 import App from "./App";
 import HomePage from "../features/home/pages/HomePage";
 import ProfilePage from "../features/profile/pages/ProfilePage";
+import ErrorBoundary from "../components/ui/ErrorPage";
 
 export const ROUTER = createBrowserRouter([
     {
         path : "/", 
-        element : <App/>,
+        Component : App,
+        ErrorBoundary : ErrorBoundary,
         children : [
             {
-                path : "/", 
-                element : <HomePage/>
+                index: true,
+                Component : HomePage
             }, 
              {
-                path : "/profile", 
-                element : <ProfilePage/>
+                path : "profile", 
+                Component : ProfilePage,
+                caseSensitive: true
             }, 
         ]
     }
