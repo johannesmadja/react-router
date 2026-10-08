@@ -1,7 +1,10 @@
-import { Outlet } from "react-router";
+import { Outlet, useParams, useSearchParams } from "react-router";
 import { NavLink } from "react-router";
 
 function ProfilePage() {
+  const { id } = useParams();
+  const [queryParams, setQueryParams] = useSearchParams();
+
   return (
     <>
       <h2 style={{ textAlign: "center" }} className="m-10">

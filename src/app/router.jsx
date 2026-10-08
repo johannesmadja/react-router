@@ -5,32 +5,39 @@ import ProfilePage from "../features/profile/pages/ProfilePage";
 import ErrorBoundary from "../components/ui/ErrorPage";
 import ProfileOverview from "../features/profile/pages/ProfileOverview";
 import ProfileData from "../features/profile/pages/ProfileData";
+import { HomePageLoader } from "../features/home/loaders/HomePageLoader";
 
 export const ROUTER = createBrowserRouter([
-    {
-        path : "/", 
-        Component : App,
-        ErrorBoundary : ErrorBoundary,
-        children : [
-            {
-                index: true,
-                Component : HomePage
-            }, 
-             {
-                path : "profile", 
-                Component : ProfilePage,
-                caseSensitive: true,
-                children : [
-                    {
-                        index: true, 
-                        Component: ProfileOverview
-                    }, 
-                    {
-                        path : "data", 
-                        Component: ProfileData
-                    }
-                ]
-            }, 
-        ]
-    }
-])
+  {
+    path: "/",
+    Component: App,
+    ErrorBoundary: ErrorBoundary,
+    children: [
+      {
+        index: true,
+        loader: HomePageLoader,
+        hydrateFallbackElement: <h2>Chargment en cours ...</h2>,
+        Component: HomePage,
+      },
+      {
+        path: "profile/:id?",
+        Component: ProfilePage,
+        caseSensitive: true,
+        children: [
+          {
+            index: true,
+            Component: ProfileOverview,
+          },
+          {
+            path: "data",
+            Component: ProfileData,
+          },
+        ],
+      },
+      {
+        path: "profile/*",
+        Component: ProfilePage,
+      },
+    ],
+  },
+]);
