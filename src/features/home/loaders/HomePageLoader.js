@@ -1,10 +1,7 @@
-export async function HomePageLoader() {
-    const response = await fetch("https://restapi.fr/api/recipes"); 
-    if (response.ok) {
-        return {
-            recipes : await response.json()
-        }
-    }
+import { getRecipes } from "../../../services/api";
 
-    return {};
+export async function HomePageLoader() {
+  const recipes = await getRecipes();
+
+  return { recipes };
 }

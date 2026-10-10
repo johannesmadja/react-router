@@ -6,6 +6,7 @@ import ErrorBoundary from "../components/ui/ErrorPage";
 import ProfileOverview from "../features/profile/pages/ProfileOverview";
 import ProfileData from "../features/profile/pages/ProfileData";
 import { HomePageLoader } from "../features/home/loaders/HomePageLoader";
+import { ProtectedRoute } from "../features/auth/components/ProtectedRoute";
 
 export const ROUTER = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ export const ROUTER = createBrowserRouter([
       },
       {
         path: "profile/:id?",
-        Component: ProfilePage,
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
         caseSensitive: true,
         children: [
           {
